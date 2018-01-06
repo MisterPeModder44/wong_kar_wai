@@ -6,7 +6,7 @@
 #    By: mressier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/06 13:51:05 by mressier          #+#    #+#              #
-#    Updated: 2018/01/06 13:51:06 by mressier         ###   ########.fr        #
+#    Updated: 2018/01/06 18:45:38 by mressier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS_NAMES =	main.c \
 				events.c \
 				menu_events.c \
 				game_events.c \
+				gameover_events.c \
 				t_grid_move.c \
 				t_grid_tools.c \
 				t_grid_map_iter.c \
