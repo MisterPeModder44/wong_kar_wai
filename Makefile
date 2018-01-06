@@ -5,7 +5,9 @@ OBJ_PATH := bin
 INC_PATH := includes
 
 SRCS_NAMES = main.c \
-                t_grid.c
+                t_grid.c \
+                t_grid_move.c \
+                t_grid_tools.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
