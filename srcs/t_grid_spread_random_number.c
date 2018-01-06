@@ -15,7 +15,7 @@
 
 #define NUMBERS_MAX		4
 
-static unsigned int		internal_get_random_start_value()
+static unsigned int		internal_get_random_start_value(void)
 {
 	unsigned int		numbers[NUMBERS_MAX];
 	int					i;
@@ -64,4 +64,3 @@ void					t_grid_spread_random_number(t_grid *grid,
 		i++;
 	}
 }
-

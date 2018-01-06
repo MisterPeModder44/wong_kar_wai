@@ -17,6 +17,7 @@
 ** t_grid_iter return the first value which is not 0
 ** If we found the win value, we return 1 to break the loop
 */
+
 static int		is_win_value(t_grid *grid, unsigned int line, unsigned int col)
 {
 	if (t_grid_cell_value(*grid, line, col) == WIN_VALUE)
@@ -30,6 +31,7 @@ static int		is_win_value(t_grid *grid, unsigned int line, unsigned int col)
 ** If we found a square which can be merged with its neighboor,
 ** return 1 to break to loop
 */
+
 static int		is_mergeable_square(t_grid *grid, unsigned int line,
 					unsigned int col)
 {
@@ -52,6 +54,7 @@ static int		is_mergeable_square(t_grid *grid, unsigned int line,
 ** t_grid_iter return the first value which is not 0
 ** If we found an empty value, we return 1 to break the loop
 */
+
 int				is_empty_value(t_grid *grid, unsigned int line,
 					unsigned int col)
 {
@@ -63,6 +66,7 @@ int				is_empty_value(t_grid *grid, unsigned int line,
 /*
 ** Return true if the WIN_VALUE have been found on the grid
 */
+
 bool			t_grid_win(t_grid *grid)
 {
 	return (t_grid_iter(grid, is_win_value) != 0);
@@ -74,10 +78,10 @@ bool			t_grid_win(t_grid *grid)
 ** t_grid_iter return 1 if an empty square is found
 ** so if it return 0, there is no more empty square, so we loose
 */
+
 bool			t_grid_loose(t_grid *grid)
 {
 	if (t_grid_iter(grid, is_empty_value) == 0)
 		return (t_grid_iter(grid, is_mergeable_square) == 0);
 	return (false);
 }
-
