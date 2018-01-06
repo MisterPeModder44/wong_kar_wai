@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 16:48:48 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 17:48:42 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				game_key(t_gamestate *state, int key)
 	}
 	if (key == ESC_KEY || key == Q_KEY || t_grid_loose(state->grid))
 	{
-		state->state = STATE_MENU;
+		state->state = STATE_LOST;
 		t_grid_init(state->grid, state->grid->grid_size);
 		t_grid_spread_random_number(state->grid, GRID_SIZE_MAX / 2);
 	}

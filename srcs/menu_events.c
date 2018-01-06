@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 16:47:35 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 17:41:25 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			menu_key(t_gamestate *state, int key)
 		--state->menu_item;
 	else if (key == KEY_DOWN)
 		++state->menu_item;
-	else if (key == 10 && state->menu_item == 0)
+	else if (key == ENTER_KEY && state->menu_item == 0)
 	{
 		state->state = STATE_GAME;
 	}

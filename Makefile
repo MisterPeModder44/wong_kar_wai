@@ -6,7 +6,7 @@
 #    By: mressier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/06 13:51:05 by mressier          #+#    #+#              #
-#    Updated: 2018/01/06 13:51:06 by mressier         ###   ########.fr        #
+#    Updated: 2018/01/06 17:49:14 by yguaye           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,12 @@ SRCS_NAMES =	main.c \
 				events.c \
 				menu_events.c \
 				game_events.c \
+				gameover_events.c \
 				t_grid_move.c \
 				t_grid_tools.c \
 				t_grid_map_iter.c \
 				t_grid_win_or_loose.c \
-				t_grid_spread_random_number.c
+				t_grid_spread_random_number.c \
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
