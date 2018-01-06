@@ -13,6 +13,7 @@
 #include <ncurses.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <time.h>
 #include "draw.h"
 #include "events.h"
 #include "game_2048.h"
@@ -49,6 +50,7 @@ void			loop(void)
 
 int				main(void)
 {
+	srand(time(NULL));
 	initscr();
 	noecho();
 	curs_set(0);
