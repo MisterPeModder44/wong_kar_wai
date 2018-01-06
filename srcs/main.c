@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 17:00:34 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:18:10 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "events.h"
 #include "game_2048.h"
 
-
-void sig_handler(int signo)
+void			sig_handler(int signo)
 {
 	if (signo == SIGINT || signo == SIGTSTP || signo == SIGUSR1 ||
 			signo == SIGUSR2)
@@ -43,7 +42,7 @@ void			loop(void)
 		on_redraw(&state);
 		key = getch();
 		if (on_key_pressed(&state, key))
-			break;
+			break ;
 	}
 }
 

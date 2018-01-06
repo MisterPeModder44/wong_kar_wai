@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:28:48 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 17:15:38 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:26:51 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void			put_square(WINDOW *win, int *square, int number, char *text)
 		}
 		++y;
 	}
-	mvwprintw(win, square[1] + square[2] / 4 - 1, square[0] + square[2] / 2 - ft_strlen(text) / 2, text);
+	mvwprintw(win, square[1] + square[2] / 4 - 1, square[0] + square[2] / 2 -
+			ft_strlen(text) / 2, text);
 	attroff(COLOR_PAIR(group));
 }

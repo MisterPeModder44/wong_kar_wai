@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 17:41:25 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:18:25 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "events.h"
 #include "draw.h"
 
-int			menu_key(t_gamestate *state, int key)
+int				menu_key(t_gamestate *state, int key)
 {
 	if (key == ESC_KEY || key == Q_KEY)
 		return (1);
