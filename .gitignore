@@ -5,3 +5,6 @@ game_2048
 .syntastic_c_config
 .syntastic_cpp_config
 norm.log
+CMakeLists.txt
+.idea
+cmake*
