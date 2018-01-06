@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:28:48 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 16:26:25 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 17:15:38 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,15 @@ static short	internal_get_color(int number)
 		return (COLOR_WHITE);
 	else if (number == 4)
 		return (COLOR_YELLOW);
-	else
-		return (COLOR_RED);
+	else if (number == 8)
+		return (COLOR_GREEN);
+	else if (number == 16 || number == 32)
+		return (COLOR_CYAN);
+	else if (number == 64 || number == 128)
+		return (COLOR_BLUE);
+	else if (number == 254 || number == 512)
+		return (COLOR_BLUE);
+	return (COLOR_RED);
 }
 
 void			put_square(WINDOW *win, int *square, int number, char *text)
