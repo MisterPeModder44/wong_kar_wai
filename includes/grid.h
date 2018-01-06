@@ -13,6 +13,8 @@
 #ifndef GRID_H
 # define GRID_H
 
+# include <ncurses.h>
+
 # define GRID_SIZE_MAX	4
 
 typedef struct		s_grid
@@ -27,6 +29,14 @@ typedef struct		s_gamestate
 	int				menu_item;
 	t_grid			*grid;
 }					t_gamestate;
+
+typedef enum		e_move
+{
+	MOVE_UP = KEY_UP,
+	MOVE_RIGHT = KEY_RIGHT,
+	MOVE_DOWN = KEY_DOWN,
+	MOVE_LEFT = KEY_LEFT
+}					t_move;
 
 typedef enum		e_merge_turns
 {
@@ -60,7 +70,7 @@ void				t_grid_map(t_grid *grid, t_grid_func func);
 /*
 ** t_grid_move.c
 */
-int					t_grid_move(int move, t_grid *grid);
+int					t_grid_move(t_move move, t_grid *grid);
 
 /*
 ** t_grid_tools.c
@@ -82,7 +92,6 @@ int					is_empty_value(t_grid *grid, unsigned int line,
 /*
 ** t_grid_spread_random_number.c
 */
-void				t_grid_spread_random_number(t_grid *grid,
-						unsigned int nb_rand);
+void				t_grid_spread_random_number(t_grid *grid, unsigned int nb_rand);
 
 #endif
