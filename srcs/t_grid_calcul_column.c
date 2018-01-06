@@ -15,7 +15,7 @@
 
 int				t_grid_calcul_column_up(t_grid *grid, unsigned int line)
 {
-	unsigned int		col;
+	int					col;
 	int					turn;
 	int					move;
 
@@ -24,7 +24,7 @@ int				t_grid_calcul_column_up(t_grid *grid, unsigned int line)
 	while (turn < TURN_MAX)
 	{
 		col = 0;
-		while (col < grid->grid_size - 1)
+		while (col < (int)grid->grid_size - 1)
 		{
 			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
 				move = t_grid_move_square(&(grid->grid[line][col + 1]),

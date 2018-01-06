@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "game_2048.h"
+#include <stdio.h>
 
 int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)
 {
-	unsigned int		line;
+	int					line;
 	int					turn;
 	int					move;
 
@@ -23,7 +24,7 @@ int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)
 	while (turn < TURN_MAX)
 	{
 		line = 0;
-		while (line < grid->grid_size - 1)
+		while (line < (int)grid->grid_size - 1)
 		{
 			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
 				move = t_grid_move_square(&(grid->grid[line + 1][col]),
@@ -46,7 +47,7 @@ int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)
 
 int				t_grid_calcul_line_right(t_grid *grid, unsigned int col)
 {
-	unsigned int		line;
+	int					line;
 	int					turn;
 	int					move;
 
@@ -62,6 +63,7 @@ int				t_grid_calcul_line_right(t_grid *grid, unsigned int col)
 					&(grid->grid[line][col]));
 			if (turn == TURN_MERGE)
 			{
+				fprintf(stderr, "merge line %d, col %d\n", line, col);
 				if (t_grid_merge_square(&(grid->grid[line - 1][col]),
 						&(grid->grid[line][col])))
 					line--;

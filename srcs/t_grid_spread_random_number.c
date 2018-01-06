@@ -42,7 +42,6 @@ static void				internal_set_number_on_random_pos(t_grid *grid,
 	{
 		line = rand() % pos_max;
 		col = rand() % pos_max;
-		fprintf(stderr, "line %d, col %d\n", line, col);
 		if (t_grid_cell_value(*grid, line, col) == EMPTY_VALUE)
 		{
 			t_grid_set_number(grid, line, col, number);
