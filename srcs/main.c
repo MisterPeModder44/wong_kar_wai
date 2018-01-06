@@ -43,6 +43,10 @@
    return (0);
    }*/
 
+#define ESC_KEY 113
+#define Q_KEY	27
+
+
 void			loop(void)
 {
 	t_gamestate	state;
@@ -53,15 +57,15 @@ void			loop(void)
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
 	start_color();
-	while (1)
+	while (!t_grid_loose(state.grid))
 	{
 		on_redraw(&state);
 		key = getch();
 		on_key_pressed(&state, key);
 		if (key == 27 || key == 113)
 			break;
+		t_grid_spread_random_number(state.grid, 1);
 	}
-
 }
 
 int				main(void)

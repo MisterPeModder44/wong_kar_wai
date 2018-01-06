@@ -36,6 +36,8 @@ static void				internal_set_number_on_random_pos(t_grid *grid,
 	int		col;
 
 	pos_max = grid->grid_size;
+	if (t_grid_iter(grid, is_empty_value) == 0)
+		return ;
 	while (true)
 	{
 		line = rand() % pos_max;
