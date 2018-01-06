@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:06:45 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:53:50 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ int				gameover_key(t_gamestate *state, int key)
 
 void			gameover_redraw(void)
 {
+	WINDOW		*hints;
+
 	init_pair(COLOR_TITLE, COLOR_RED, COLOR_BLACK);
 	attron(COLOR_PAIR(COLOR_TITLE));
 	print_middle(stdscr, LINES / 2, "GAME OVER");
 	attroff(COLOR_PAIR(COLOR_TITLE));
+	hints = subwin(stdscr, 5, 32, LINES - 7, COLS / 2 - 16);
 	attron(COLOR_PAIR(0));
-	print_middle(stdscr, LINES / 2 + 2, "-press 'ENTER' to retry-");
-	print_middle(stdscr, LINES / 2 + 3, "-press 'Q' to go to main menu-");
-	print_middle(stdscr, LINES / 2 + 4, "-press 'ESC' to quit-");
+	print_middle(hints, 1, "press 'ENTER' to retry");
+	print_middle(hints, 2, "press 'Q' to go to main menu");
+	print_middle(hints, 3, "press 'ESC' to quit");
 	attroff(COLOR_PAIR(0));
+	box(hints, ACS_VLINE, ACS_HLINE);
+	delwin(hints);
 }

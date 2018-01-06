@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:17:13 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:21:20 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:56:48 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int				on_key_pressed(t_gamestate *state, int key)
 void			on_redraw(t_gamestate *state)
 {
 	fill_window(stdscr, COLOR_BLACK);
+	box(stdscr, ACS_VLINE, ACS_HLINE);
+	init_pair(COLOR_PLAIN, COLOR_WHITE, COLOR_BLACK);
+	attron(COLOR_PAIR(COLOR_PLAIN));
+	print_middle(stdscr, 0, "2048");
+	attroff(COLOR_PAIR(COLOR_PLAIN));
 	refresh();
 	if (state->state == STATE_MENU)
 		menu_redraw(state);

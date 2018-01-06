@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:18:25 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:55:28 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ static void		printh_middle(WINDOW *win, int *i, char *str, t_gamestate *st)
 
 void			menu_redraw(t_gamestate *state)
 {
-	init_pair(COLOR_TITLE, COLOR_RED, COLOR_BLUE);
-	attron(COLOR_PAIR(COLOR_TITLE));
-	print_middle(stdscr, 0, "2048");
-	attroff(COLOR_PAIR(COLOR_TITLE));
 	printh_middle(stdscr, (int[]){LINES / 2 - 1, 0}, "PLAY", state);
 	printh_middle(stdscr, (int[]){LINES / 2 + 1, 2}, "OPTIONS", state);
 	printh_middle(stdscr, (int[]){LINES / 2, 1}, "SCORES", state);

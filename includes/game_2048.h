@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/06 18:28:40 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 19:01:04 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdbool.h>
 # include "grid.h"
 
-# define ESC_KEY	113
-# define Q_KEY		27
+# define ESC_KEY	27
+# define Q_KEY		113
 # define ENTER_KEY	10
 
 enum	e_const
