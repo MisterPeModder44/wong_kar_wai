@@ -8,14 +8,17 @@ int		main()
     if (t_grid_init(&new_grid, GRID_SIZE_MAX) == EXIT_FAILURE)
         return (EXIT_FAILURE);
 
-    for (int i = 0; i < GRID_SIZE_MAX; i++)
-    {
+    for (int i = 0; i < 10; ++i) {
+        t_grid_set_number(&new_grid, 0, 0, 1);
+        t_grid_display(new_grid);
+        ft_putchar('\n');
 
+        ft_putstr("MOVE DOWN\n");
+        t_grid_move(MOVE_DOWN, &new_grid);
+        t_grid_display(new_grid);
+        ft_putchar('\n');
     }
 
-    if (t_grid_set_number(&new_grid, GRID_SIZE_MAX - 1, GRID_SIZE_MAX - 1, 1) == EXIT_FAILURE)
-        return (EXIT_FAILURE);
-    t_grid_display(new_grid);
 	return (EXIT_SUCCESS);
 }
 

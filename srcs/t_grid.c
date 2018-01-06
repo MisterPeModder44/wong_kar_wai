@@ -47,7 +47,7 @@ void        t_grid_display(t_grid grid)
 
 void        t_grid_display_cell(t_grid *grid, unsigned int line, unsigned int col)
 {
-    if (line >= grid->grid_size || col >= grid->grid_size)
+    if (t_grid_is_valid_coord(*grid, line, col) == false)
         return ;
     ft_putchar('[');
     ft_putnbr(grid->grid[line][col]);
@@ -58,7 +58,7 @@ void        t_grid_display_cell(t_grid *grid, unsigned int line, unsigned int co
 
 int        t_grid_set_number(t_grid *grid, unsigned int line, unsigned int col, unsigned int number)
 {
-    if (line >= grid->grid_size || col >= grid->grid_size)
+    if (t_grid_is_valid_coord(*grid, line, col) == false)
         return (EXIT_FAILURE);
     grid->grid[line][col] = number;
     return (EXIT_SUCCESS);
