@@ -1,24 +1,82 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
+/*   Updated: 2018/01/06 14:44:34 by yguaye           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <ncurses.h>
+#include "draw.h"
+#include "events.h"
 #include "game_2048.h"
 
-int		main()
+/*
+   void sig_handler(int signo)
+   {
+   if (signo == SIGINT)
+   {
+   printw("received SIGINT, stopping...\n");
+   refresh();
+   exit(0);
+   }
+   }
+
+
+
+   int main(void)
+   {
+   initscr();
+   if (signal(SIGINT, sig_handler) == SIG_ERR)
+   printw("received SIGINT, stopping...\n");
+   refresh();
+   while (1)
+   {
+   sleep(1);
+   printw("update\n");
+   refresh();
+   }
+   return (0);
+   }*/
+
+void			loop(void)
 {
-	t_grid	  new_grid;
+	t_gamestate	state;
+	t_grid		grid;
+	int			key;
 
-	if (t_grid_init(&new_grid, GRID_SIZE_MAX) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-
-	for (int i = 0; i < 10; ++i) {
-		t_grid_set_number(&new_grid, 0, 0, 1);
-		t_grid_display(new_grid);
-		ft_putchar('\n');
-
-		ft_putstr("MOVE RIGHT\n");
-		t_grid_move(MOVE_RIGHT, &new_grid);
-		t_grid_display(new_grid);
-		ft_putchar('\n');
+	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid};
+	t_grid_init(state.grid, GRID_SIZE_MAX);
+	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
+	start_color();
+	while (1)
+	{
+		on_redraw(&state);
+		key = getch();
+		on_key_pressed(&state, key);
+		if (key == 27 || key == 113)
+			break;
 	}
 
-	return (EXIT_SUCCESS);
 }
 
+int				main(void)
+{
+	initscr();
+	noecho();
+	curs_set(0);
+	keypad(stdscr, TRUE);
+	if (has_colors())
+		loop();
+	else
+	{
+		printw("Your terminal does not support color.");
+		refresh();
+	}
+	endwin();
+	return (0);
+}

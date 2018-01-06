@@ -16,8 +16,12 @@ SRC_PATH := srcs
 OBJ_PATH := bin
 INC_PATH := includes
 
-SRCS_NAMES = main.c \
+SRCS_NAMES =	main.c \
 				t_grid.c \
+				draw.c \
+				events.c \
+				menu_events.c \
+				game_events.c \
 				t_grid_move.c \
 				t_grid_tools.c \
 				t_grid_map_iter.c \
@@ -35,7 +39,7 @@ CPPFLAGS = -I$(INC_PATH) -Ilibft/includes
 RM = rm -f
 
 LIBFT = libft/libft.a
-LIBS = -Llibft -lft
+LIBS = -lncurses -Llibft -lft
 
 NORM_LOG = norm.log
 NORM_FILES =
