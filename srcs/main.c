@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 15:57:09 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 16:49:11 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void			loop(void)
 	{
 		on_redraw(&state);
 		key = getch();
-		on_key_pressed(&state, key);
-		if (key == ESC_KEY || key == Q_KEY || state.state == STATE_EXIT)
+		if (on_key_pressed(&state, key))
 			break;
 	}
 }

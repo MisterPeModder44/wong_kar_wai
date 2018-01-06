@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 16:21:33 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 16:47:35 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "events.h"
 #include "draw.h"
 
-void			menu_key(t_gamestate *state, int key)
+int			menu_key(t_gamestate *state, int key)
 {
-	if (key == KEY_UP)
+	if (key == ESC_KEY || key == Q_KEY)
+		return (1);
+	else if (key == KEY_UP)
 		--state->menu_item;
 	else if (key == KEY_DOWN)
 		++state->menu_item;
@@ -26,6 +28,7 @@ void			menu_key(t_gamestate *state, int key)
 	}
 	state->menu_item = state->menu_item < 0 ? 2 : state->menu_item;
 	state->menu_item = state->menu_item > 2 ? 0 : state->menu_item;
+	return (0);
 }
 
 static void		printh_middle(WINDOW *win, int *i, char *str, t_gamestate *st)
