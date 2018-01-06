@@ -90,6 +90,7 @@ int					is_empty_value(t_grid *grid, unsigned int line,
 /*
 ** t_grid_spread_random_number.c
 */
-void				t_grid_spread_random_number(t_grid *grid, unsigned int nb_rand);
+void				t_grid_spread_random_number(t_grid *grid,
+						unsigned int nb_rand);
 
 #endif
