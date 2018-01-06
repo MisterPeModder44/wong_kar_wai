@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 14:44:34 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 15:57:09 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@
    return (0);
    }*/
 
-#define ESC_KEY 	113
-#define Q_KEY		27
 
 void			loop(void)
 {
@@ -56,18 +54,13 @@ void			loop(void)
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
 	start_color();
-	while (!t_grid_loose(state.grid))
+	while (1)
 	{
 		on_redraw(&state);
 		key = getch();
 		on_key_pressed(&state, key);
-		if (key == 27 || key == 113)
+		if (key == ESC_KEY || key == Q_KEY || state.state == STATE_EXIT)
 			break;
-		if (key == KEY_UP || key == KEY_DOWN || key == KEY_RIGHT || key == KEY_LEFT)
-		{
-			t_grid_move(key, state.grid);
-			t_grid_spread_random_number(state.grid, 1);
-		}
 	}
 }
 

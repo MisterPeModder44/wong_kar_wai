@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 14:43:44 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 16:16:52 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 
 void			game_key(t_gamestate *state, int key)
 {
-	state--;
-	key--;
+	if (key == KEY_UP || key == KEY_DOWN || key == KEY_RIGHT || key == KEY_LEFT)
+	{
+		t_grid_move(key, state->grid);
+		t_grid_spread_random_number(state->grid, 1);
+	}
+	if (t_grid_loose(state->grid))
+		state->state = STATE_EXIT;
 }
 
 void			game_redraw(t_gamestate *state)
@@ -43,7 +48,7 @@ void			game_redraw(t_gamestate *state)
 			if (text)
 				ft_strdel(&text);
 			text = state->grid->grid[x][y] ? ft_itoa(state->grid->grid[x][y]) : ft_strdup(" ");
-			put_square(stdscr, (int[]){sx, sy, 12}, (short[]){COLOR_SQUARE, COLOR_YELLOW}, text);
+			put_square(stdscr, (int[]){sx, sy, 12}, state->grid->grid[x][y], text);
 			sx += 13;
 		}
 		sy += 6;

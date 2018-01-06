@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:28:48 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 14:16:50 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 16:26:25 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,41 @@ void			print_middle(WINDOW *win, int y, char *str)
 	mvwprintw(win, y, dim[1] / 2 - ft_strlen(str) / 2, str);
 }
 
-void			put_square(WINDOW *win, int *square, short *color, char *text)
+static int		internal_get_group(int number)
+{
+	short		pos;
+
+	if (number == 0)
+		return (0);
+	pos = 1;
+	while (number > 1)
+	{
+		number >>= 1;
+		++pos;
+	}
+	return (pos);
+}
+
+static short	internal_get_color(int number)
+{
+	if (number <= 2)
+		return (COLOR_WHITE);
+	else if (number == 4)
+		return (COLOR_YELLOW);
+	else
+		return (COLOR_RED);
+}
+
+void			put_square(WINDOW *win, int *square, int number, char *text)
 {
 	int			x;
 	int			y;
+	short		group;
 
 	y = 0;
-	init_pair(color[0], COLOR_BLACK, color[1]);
-	attron(COLOR_PAIR(color[0]));
+	group = COLOR_SQUARE + internal_get_group(number);
+	init_pair(group, COLOR_BLACK, internal_get_color(number));
+	attron(COLOR_PAIR(group));
 	while (y < square[2] / 2 - 1)
 	{
 		x = 0;
@@ -66,5 +93,5 @@ void			put_square(WINDOW *win, int *square, short *color, char *text)
 		++y;
 	}
 	mvwprintw(win, square[1] + square[2] / 4 - 1, square[0] + square[2] / 2 - ft_strlen(text) / 2, text);
-	attroff(COLOR_PAIR(color[0]));
+	attroff(COLOR_PAIR(group));
 }

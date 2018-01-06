@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/06 13:58:14 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 15:56:51 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 # include <stdbool.h>
 # include "grid.h"
 
+# define ESC_KEY 	113
+# define Q_KEY		27
+
 enum e_const
 {
 	EMPTY_VALUE = 0,
 	STATE_MENU,
 	STATE_GAME,
+	STATE_EXIT,
 	WIN_VALUE = 2048,
 };
 
