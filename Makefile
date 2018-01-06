@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mressier <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/06 13:51:05 by mressier          #+#    #+#              #
+#    Updated: 2018/01/06 13:51:06 by mressier         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME := game_2048
 
 SRC_PATH := srcs
@@ -5,9 +17,9 @@ OBJ_PATH := bin
 INC_PATH := includes
 
 SRCS_NAMES = main.c \
-                t_grid.c \
-                t_grid_move.c \
-                t_grid_tools.c
+				t_grid.c \
+				t_grid_move.c \
+				t_grid_tools.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
@@ -31,7 +43,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	@tput dl; tput cub 100; printf "\033[90mCreating object files: \033[32mdone!"
 	@printf "\n\033[90mCompiling \033[0m$(NAME)\033[90m: \033[0m"
 	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(LIBS)
-	@printf "\033[32mdone!\n"
+	@printf "\033[32mdone!\033[0m\n"
 
 $(LIBFT):
 	@make -C libft VERBOSE=0
