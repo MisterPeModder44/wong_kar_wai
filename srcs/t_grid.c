@@ -22,25 +22,38 @@ int      t_grid_init(t_grid *new_grid, unsigned int size)
     return (EXIT_SUCCESS);
 }
 
-void        t_grid_display(t_grid grid)
+void        t_grid_map(t_grid *grid, t_grid_func func)
 {
     unsigned int    i;
     unsigned int    j;
 
     i = 0;
-    while (i < grid.grid_size)
+    while (i < grid->grid_size)
     {
         j = 0;
-        while (j < grid.grid_size)
+        while (j < grid->grid_size)
         {
-            ft_putchar('[');
-            ft_putnbr(grid.grid[i][j]);
-            ft_putchar(']');
+            func(grid, i, j);
             j++;
         }
-        ft_putchar('\n');
         i++;
     }
+}
+
+void        t_grid_display(t_grid grid)
+{
+    t_grid_map(&grid, t_grid_display_cell);
+}
+
+void        t_grid_display_cell(t_grid *grid, unsigned int line, unsigned int col)
+{
+    if (line >= grid->grid_size || col >= grid->grid_size)
+        return ;
+    ft_putchar('[');
+    ft_putnbr(grid->grid[line][col]);
+    ft_putchar(']');
+    if (col == grid->grid_size - 1)
+        ft_putchar('\n');
 }
 
 int        t_grid_set_number(t_grid *grid, unsigned int line, unsigned int col, unsigned int number)
