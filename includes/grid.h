@@ -68,11 +68,6 @@ int					t_grid_iter(t_grid *grid, t_grid_func_iter func);
 void				t_grid_map(t_grid *grid, t_grid_func func);
 
 /*
-** t_grid_move.c
-*/
-int					t_grid_move(t_move move, t_grid *grid);
-
-/*
 ** t_grid_tools.c
 */
 bool				t_grid_is_valid_coord(t_grid grid, unsigned int line,
@@ -92,6 +87,28 @@ int					is_empty_value(t_grid *grid, unsigned int line,
 /*
 ** t_grid_spread_random_number.c
 */
-void				t_grid_spread_random_number(t_grid *grid, unsigned int nb_rand);
+void				t_grid_spread_random_number(t_grid *grid,
+						unsigned int nb_rand);
+
+/*
+** t_grid_move.c
+*/
+int					t_grid_merge_square(unsigned int *square_value,
+									unsigned int *next_square_value);
+int					t_grid_move_square(unsigned int *square_value,
+									unsigned int *next_square_value);
+int					t_grid_move(t_move move, t_grid *grid);
+
+/*
+** t_grid_calcul_column.c
+*/
+int					t_grid_calcul_column_up(t_grid *grid, unsigned int line);
+int					t_grid_calcul_column_down(t_grid *grid, unsigned int line);
+
+/*
+** t_grid_calcul_line.c
+*/
+int					t_grid_calcul_line_left(t_grid *grid, unsigned int col);
+int					t_grid_calcul_line_right(t_grid *grid, unsigned int col);
 
 #endif
