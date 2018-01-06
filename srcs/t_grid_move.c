@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <ncurses.h>
 #include "game_2048.h"
 
 static bool				internal_merge_square(unsigned int *square_value,
@@ -99,7 +100,7 @@ static void				internal_calcul_new_column(t_grid *grid,
 	}
 }
 
-int						t_grid_move(t_move move, t_grid *grid)
+int						t_grid_move(int move, t_grid *grid)
 {
 	unsigned int		col;
 	unsigned int		line;
@@ -107,19 +108,19 @@ int						t_grid_move(t_move move, t_grid *grid)
 
 	col = 0;
 	line = 0;
-	if (move == MOVE_DOWN || move == MOVE_UP)
+	if (move == KEY_LEFT || move == KEY_RIGHT)
 	{
-		inc = (move == MOVE_DOWN ? 1 : -1);
-		while (col < grid->grid_size - 1)
+		inc = (move == KEY_RIGHT ? 1 : -1);
+		while (col < grid->grid_size)
 		{
 			internal_calcul_new_line(grid, col, inc);
 			col++;
 		}
 	}
-	if (move == MOVE_LEFT || move == MOVE_RIGHT)
+	if (move == KEY_DOWN || move == KEY_UP)
 	{
-		inc = (move == MOVE_RIGHT ? 1 : -1);
-		while (line < grid->grid_size - 1)
+		inc = (move == KEY_DOWN ? 1 : -1);
+		while (line < grid->grid_size)
 		{
 			internal_calcul_new_column(grid, line, inc);
 			line++;
