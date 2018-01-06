@@ -38,4 +38,11 @@ enum	e_color_set
 	COLOR_PLAIN
 };
 
+typedef struct		s_gamestate
+{
+	int				state;
+	int				menu_item;
+	t_grid			*grid;
+}					t_gamestate;
+
 #endif

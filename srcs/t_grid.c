@@ -19,6 +19,7 @@ int			t_grid_init(t_grid *new_grid, unsigned int size)
 	if (size > GRID_SIZE_MAX)
 		return (EXIT_FAILURE);
 	new_grid->grid_size = size;
+	new_grid->score = 0;
 	return (EXIT_SUCCESS);
 }
 

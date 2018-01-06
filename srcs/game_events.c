@@ -19,8 +19,8 @@ int				game_key(t_gamestate *state, int key)
 {
 	if (key == KEY_UP || key == KEY_DOWN || key == KEY_RIGHT || key == KEY_LEFT)
 	{
-		t_grid_move(key, state->grid);
-		t_grid_spread_random_number(state->grid, 1);
+		if (t_grid_move(key, state->grid))
+			t_grid_spread_random_number(state->grid, 1);
 	}
 	if (key == ESC_KEY || key == Q_KEY)
 	{

@@ -18,18 +18,21 @@
 #define IS_INC_UP(inc) 		((inc) > 0)
 #define IS_INC_DOWN(inc)	((inc) < 0)
 
-static void		internal_move_squares_on_line(t_grid *grid, int col,
+static int		internal_move_squares_on_line(t_grid *grid, int col,
 					int limit, int inc)
 {
 	int		move;
+	int		count;
 	int		line;
 	int		start;
 
 	move = 1;
+	count = -1;
 	start = (IS_INC_UP(inc) ? 0 : grid->grid_size - 1);
 	while (move > 0)
 	{
 		move = 0;
+		count++;
 		line = start;
 		while ((IS_INC_UP(inc) && line < limit)
 				|| (IS_INC_DOWN(inc) && line > limit))
@@ -40,6 +43,7 @@ static void		internal_move_squares_on_line(t_grid *grid, int col,
 			line += inc;
 		}
 	}
+	return (count > 0);
 }
 
 static int		internal_merge_squares_on_line(t_grid *grid, int col,
@@ -68,14 +72,17 @@ static int		internal_merge_squares_on_line(t_grid *grid, int col,
 
 static int		internal_calcul_line(t_grid *grid, unsigned int col, int inc)
 {
-	int		move_value;
 	int		limit;
+	int		move;
+	int		move_value;
 
 	limit = (IS_INC_UP(inc) ? grid->grid_size - 1 : 0);
-	internal_move_squares_on_line(grid, col, limit, inc);
+	move = internal_move_squares_on_line(grid, col, limit, inc);
 	move_value = internal_merge_squares_on_line(grid, col, limit, inc);
-	internal_move_squares_on_line(grid, col, limit, inc);
-	return (move_value);
+	move += internal_move_squares_on_line(grid, col, limit, inc);
+	move += move_value;
+	grid->score += move_value;
+	return (move);
 }
 
 int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)

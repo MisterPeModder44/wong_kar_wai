@@ -21,14 +21,8 @@ typedef struct		s_grid
 {
 	unsigned int	grid[GRID_SIZE_MAX][GRID_SIZE_MAX];
 	unsigned int	grid_size;
+	unsigned int	score;
 }					t_grid;
-
-typedef struct		s_gamestate
-{
-	int				state;
-	int				menu_item;
-	t_grid			*grid;
-}					t_gamestate;
 
 typedef enum		e_move
 {
@@ -37,14 +31,6 @@ typedef enum		e_move
 	MOVE_DOWN = KEY_DOWN,
 	MOVE_LEFT = KEY_LEFT
 }					t_move;
-
-typedef enum		e_merge_turns
-{
-	TURN_MOVE = 0,
-	TURN_MERGE,
-	TURN_RE_MOVE,
-	TURN_MAX
-}					t_merge_turns;
 
 typedef	void		(*t_grid_func)(t_grid *, unsigned int line,
 											unsigned int col);
