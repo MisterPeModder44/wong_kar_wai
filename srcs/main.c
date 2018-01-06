@@ -6,43 +6,27 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 15:57:09 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 17:00:34 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ncurses.h>
+#include <signal.h>
+#include <stdlib.h>
 #include "draw.h"
 #include "events.h"
 #include "game_2048.h"
 
-/*
-   void sig_handler(int signo)
-   {
-   if (signo == SIGINT)
-   {
-   printw("received SIGINT, stopping...\n");
-   refresh();
-   exit(0);
-   }
-   }
 
-
-
-   int main(void)
-   {
-   initscr();
-   if (signal(SIGINT, sig_handler) == SIG_ERR)
-   printw("received SIGINT, stopping...\n");
-   refresh();
-   while (1)
-   {
-   sleep(1);
-   printw("update\n");
-   refresh();
-   }
-   return (0);
-   }*/
-
+void sig_handler(int signo)
+{
+	if (signo == SIGINT || signo == SIGTSTP || signo == SIGUSR1 ||
+			signo == SIGUSR2)
+	{
+		endwin();
+		exit(EXIT_FAILURE);
+	}
+}
 
 void			loop(void)
 {
@@ -58,8 +42,7 @@ void			loop(void)
 	{
 		on_redraw(&state);
 		key = getch();
-		on_key_pressed(&state, key);
-		if (key == ESC_KEY || key == Q_KEY || state.state == STATE_EXIT)
+		if (on_key_pressed(&state, key))
 			break;
 	}
 }
@@ -70,6 +53,10 @@ int				main(void)
 	noecho();
 	curs_set(0);
 	keypad(stdscr, TRUE);
+	signal(SIGINT, sig_handler);
+	signal(SIGTSTP, sig_handler);
+	signal(SIGUSR1, sig_handler);
+	signal(SIGUSR2, sig_handler);
 	if (has_colors())
 		loop();
 	else

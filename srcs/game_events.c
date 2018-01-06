@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 16:16:52 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/06 16:48:48 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 #include "events.h"
 #include "draw.h"
 
-void			game_key(t_gamestate *state, int key)
+int				game_key(t_gamestate *state, int key)
 {
 	if (key == KEY_UP || key == KEY_DOWN || key == KEY_RIGHT || key == KEY_LEFT)
 	{
 		t_grid_move(key, state->grid);
 		t_grid_spread_random_number(state->grid, 1);
 	}
-	if (t_grid_loose(state->grid))
-		state->state = STATE_EXIT;
+	if (key == ESC_KEY || key == Q_KEY || t_grid_loose(state->grid))
+	{
+		state->state = STATE_MENU;
+		t_grid_init(state->grid, state->grid->grid_size);
+		t_grid_spread_random_number(state->grid, GRID_SIZE_MAX / 2);
+	}
+	return (0);
 }
 
 void			game_redraw(t_gamestate *state)
