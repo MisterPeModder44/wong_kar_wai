@@ -26,7 +26,9 @@ SRCS_NAMES =	main.c \
 				t_grid_tools.c \
 				t_grid_map_iter.c \
 				t_grid_win_or_loose.c \
-				t_grid_spread_random_number.c
+				t_grid_spread_random_number.c \
+				t_grid_calcul_column.c \
+				t_grid_calcul_line.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
