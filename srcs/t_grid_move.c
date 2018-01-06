@@ -44,8 +44,10 @@ int				t_grid_move_square(unsigned int *square_value,
 int						t_grid_move(t_move move, t_grid *grid)
 {
 	unsigned int		i;
+	unsigned int		move_value;
 
 	i = 0;
+	move_value = 0;
 	while (i < grid->grid_size)
 	{
 		if (move == MOVE_DOWN)
