@@ -19,7 +19,10 @@ INC_PATH := includes
 SRCS_NAMES = main.c \
 				t_grid.c \
 				t_grid_move.c \
-				t_grid_tools.c
+				t_grid_tools.c \
+				t_grid_map_iter.c \
+				t_grid_win_or_loose.c \
+				t_grid_spread_random_number.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 

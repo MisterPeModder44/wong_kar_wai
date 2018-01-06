@@ -22,24 +22,6 @@ int			t_grid_init(t_grid *new_grid, unsigned int size)
 	return (EXIT_SUCCESS);
 }
 
-void		t_grid_map(t_grid *grid, t_grid_func func)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	while (i < grid->grid_size)
-	{
-		j = 0;
-		while (j < grid->grid_size)
-		{
-			func(grid, i, j);
-			j++;
-		}
-		i++;
-	}
-}
-
 void		t_grid_display(t_grid grid)
 {
 	t_grid_map(&grid, t_grid_display_cell);
