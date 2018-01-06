@@ -1,0 +1,3 @@
+[submodule "LibFt"]
+	path = LibFt
+	url = https://www.github.com/MisterPeModder44/LibFt.git

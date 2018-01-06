@@ -1,0 +1,7 @@
+*.o
+libft.a
+game_2048
+*.exe
+.syntastic_c_config
+.syntastic_cpp_config
+norm.log
