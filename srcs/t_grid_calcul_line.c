@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "game_2048.h"
-#include <stdio.h>
 
 int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)
 {
@@ -63,7 +62,6 @@ int				t_grid_calcul_line_right(t_grid *grid, unsigned int col)
 					&(grid->grid[line][col]));
 			if (turn == TURN_MERGE)
 			{
-				fprintf(stderr, "merge line %d, col %d\n", line, col);
 				if (t_grid_merge_square(&(grid->grid[line - 1][col]),
 						&(grid->grid[line][col])))
 					line--;
