@@ -33,8 +33,14 @@ SRCS_NAMES =	main.c \
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
+INC_NAMES =		draw.h \
+				events.h \
+				game_2048.h \
+				grid.h
+
 SRCS = $(addprefix $(SRC_PATH)/, $(SRCS_NAMES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAMES))
+INCS = $(addprefix $(INC_PATH)/, $(INC_NAMES))
 
 CC = gcc
 CFLAGS = --std=c99 -Wall -Werror -Wextra
@@ -58,7 +64,7 @@ $(NAME): $(LIBFT) $(OBJS)
 $(LIBFT):
 	@make -C libft VERBOSE=0
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@tput dl; tput cub 100; printf "\033[90mCreating object files: \033[0m$(notdir $@)"
 	@-$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@

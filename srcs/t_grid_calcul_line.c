@@ -11,68 +11,79 @@
 /* ************************************************************************** */
 
 #include "game_2048.h"
-#include <stdio.h>
+
+#define INC_UP		1
+#define INC_DOWN	-1
+
+#define IS_INC_UP(inc) 		((inc) > 0)
+#define IS_INC_DOWN(inc)	((inc) < 0)
+
+static void		internal_move_squares_on_line(t_grid *grid, int col,
+					int limit, int inc)
+{
+	int		move;
+	int		line;
+	int		start;
+
+	move = 1;
+	start = (IS_INC_UP(inc) ? 0 : grid->grid_size - 1);
+	while (move > 0)
+	{
+		move = 0;
+		line = start;
+		while ((IS_INC_UP(inc) && line < limit)
+				|| (IS_INC_DOWN(inc) && line > limit))
+		{
+			if (t_grid_move_square(&(grid->grid[line + inc][col]),
+						&(grid->grid[line][col])))
+				move++;
+			line += inc;
+		}
+	}
+}
+
+static int		internal_merge_squares_on_line(t_grid *grid, int col,
+					int limit, int inc)
+{
+	int			move_value;
+	int			line;
+	int			start;
+
+	start = (IS_INC_UP(inc) ? 0 : grid->grid_size - 1);
+	move_value = 0;
+	line = start;
+	while ((IS_INC_UP(inc) && line < limit)
+			|| (IS_INC_DOWN(inc) && line > limit))
+	{
+		if (t_grid_merge_square(&(grid->grid[line + inc][col]),
+								&(grid->grid[line][col])))
+		{
+			move_value += t_grid_cell_value(*grid, line, col);
+			line += inc;
+		}
+		line += inc;
+	}
+	return (move_value);
+}
+
+static int		internal_calcul_line(t_grid *grid, unsigned int col, int inc)
+{
+	int		move_value;
+	int		limit;
+
+	limit = (IS_INC_UP(inc) ? grid->grid_size - 1 : 0);
+	internal_move_squares_on_line(grid, col, limit, inc);
+	move_value = internal_merge_squares_on_line(grid, col, limit, inc);
+	internal_move_squares_on_line(grid, col, limit, inc);
+	return (move_value);
+}
 
 int				t_grid_calcul_line_left(t_grid *grid, unsigned int col)
 {
-	int					line;
-	int					turn;
-	int					move;
-
-	turn = TURN_MOVE;
-	move = false;
-	while (turn < TURN_MAX)
-	{
-		line = 0;
-		while (line < (int)grid->grid_size - 1)
-		{
-			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
-				move = t_grid_move_square(&(grid->grid[line + 1][col]),
-					&(grid->grid[line][col]));
-			if (turn == TURN_MERGE)
-			{
-				if (t_grid_merge_square(&(grid->grid[line + 1][col]),
-						&(grid->grid[line][col])))
-					line++;
-			}
-			line++;
-		}
-		if (move)
-			move = false;
-		else
-			turn++;
-	}
-	return (0);
+	return (internal_calcul_line(grid, col, INC_UP));
 }
 
 int				t_grid_calcul_line_right(t_grid *grid, unsigned int col)
 {
-	int					line;
-	int					turn;
-	int					move;
-
-	turn = TURN_MOVE;
-	move = false;
-	while (turn < TURN_MAX)
-	{
-		line = grid->grid_size - 1;
-		while (line > 0)
-		{
-			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
-				move = t_grid_move_square(&(grid->grid[line - 1][col]),
-					&(grid->grid[line][col]));
-			if (turn == TURN_MERGE)
-			{
-				if (t_grid_merge_square(&(grid->grid[line - 1][col]),
-						&(grid->grid[line][col])))
-					line--;
-			}
-			line--;
-		}
-		if (move)
-			move = false;
-		else
-			turn++;
-	}
-	return (0);
+	return (internal_calcul_line(grid, col, INC_DOWN));
 }

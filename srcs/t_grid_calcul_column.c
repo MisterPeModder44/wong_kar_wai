@@ -13,67 +13,78 @@
 #include <stdlib.h>
 #include "game_2048.h"
 
+#define INC_UP		1
+#define INC_DOWN	-1
+
+#define IS_INC_UP(inc) 		((inc) > 0)
+#define IS_INC_DOWN(inc)	((inc) < 0)
+
+static void		internal_move_squares_on_column(t_grid *grid, int line,
+					int limit, int inc)
+{
+	int		move;
+	int		col;
+	int		start;
+
+	move = 1;
+	start = (IS_INC_UP(inc) ? 0 : grid->grid_size - 1);
+	while (move > 0)
+	{
+		move = 0;
+		col = start;
+		while ((IS_INC_UP(inc) && col < limit)
+				|| (IS_INC_DOWN(inc) && col > limit))
+		{
+			if (t_grid_move_square(&(grid->grid[line][col + inc]),
+						&(grid->grid[line][col])))
+				move++;
+			col += inc;
+		}
+	}
+}
+
+static int		internal_merge_squares_on_column(t_grid *grid, int line,
+					int limit, int inc)
+{
+	int			move_value;
+	int			col;
+	int			start;
+
+	start = (IS_INC_UP(inc) ? 0 : grid->grid_size - 1);
+	move_value = 0;
+	col = start;
+	while ((IS_INC_UP(inc) && col < limit)
+			|| (IS_INC_DOWN(inc) && col > limit))
+	{
+		if (t_grid_merge_square(&(grid->grid[line][col + inc]),
+								&(grid->grid[line][col])))
+		{
+			move_value += t_grid_cell_value(*grid, line, col);
+			col += inc;
+		}
+		col += inc;
+	}
+	return (move_value);
+}
+
+static int		internal_calcul_column(t_grid *grid, unsigned int line, int inc)
+{
+	int		move_value;
+	int		limit;
+
+	limit = (IS_INC_UP(inc) ? grid->grid_size - 1 : 0);
+	internal_move_squares_on_column(grid, line, limit, inc);
+	move_value = internal_merge_squares_on_column(grid, line, limit, inc);
+	internal_move_squares_on_column(grid, line, limit, inc);
+	return (move_value);
+}
+
 int				t_grid_calcul_column_up(t_grid *grid, unsigned int line)
 {
-	int					col;
-	int					turn;
-	int					move;
-
-	turn = TURN_MOVE;
-	move = false;
-	while (turn < TURN_MAX)
-	{
-		col = 0;
-		while (col < (int)grid->grid_size - 1)
-		{
-			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
-				move = t_grid_move_square(&(grid->grid[line][col + 1]),
-					&(grid->grid[line][col]));
-			if (turn == TURN_MERGE)
-			{
-				if (t_grid_merge_square(&(grid->grid[line][col + 1]),
-						&(grid->grid[line][col])))
-					col++;
-			}
-			col++;
-		}
-		if (move)
-			move = false;
-		else
-			turn++;
-	}
-	return (0);
+	return (internal_calcul_column(grid, line, INC_UP));
 }
 
 int				t_grid_calcul_column_down(t_grid *grid, unsigned int line)
 {
-	int		col;
-	int		turn;
-	int		move;
-
-	turn = TURN_MOVE;
-	move = false;
-	while (turn < TURN_MAX)
-	{
-		col = grid->grid_size - 1;
-		while (col > 0)
-		{
-			if (turn == TURN_MOVE || turn == TURN_RE_MOVE)
-				move = t_grid_move_square(&(grid->grid[line][col - 1]),
-					&(grid->grid[line][col]));
-			if (turn == TURN_MERGE)
-			{
-				if (t_grid_merge_square(&(grid->grid[line][col - 1]),
-						&(grid->grid[line][col])))
-					col--;
-			}
-			col--;
-		}
-		if (move)
-			move = false;
-		else
-			turn++;
-	}
-	return (0);
+	return (internal_calcul_column(grid, line, INC_DOWN));
 }
-
