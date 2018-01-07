@@ -20,7 +20,7 @@
 
 static int		is_win_value(t_grid *grid, unsigned int line, unsigned int col)
 {
-	if (t_grid_cell_value(*grid, line, col) == WIN_VALUE)
+	if (t_grid_cell_value(*grid, line, col) >= WIN_VALUE)
 		return (1);
 	return (0);
 }

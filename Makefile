@@ -6,7 +6,7 @@
 #    By: mressier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/06 13:51:05 by mressier          #+#    #+#              #
-#    Updated: 2018/01/06 18:45:38 by mressier         ###   ########.fr        #
+#    Updated: 2018/01/07 14:47:29 by yguaye           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,20 +23,30 @@ SRCS_NAMES =	main.c \
 				menu_events.c \
 				game_events.c \
 				gameover_events.c \
+				quit_dialog_events.c \
 				t_grid_move.c \
 				t_grid_tools.c \
 				t_grid_map_iter.c \
 				t_grid_win_or_loose.c \
 				t_grid_spread_random_number.c \
 				t_grid_calcul_column.c \
-				t_grid_calcul_line.c
+				t_grid_calcul_line.c \
+				ft_read_file.c \
+				ft_memjoin.c \
+				ft_count_char.c \
+				t_score_tab_file.c \
+				t_score_from_string.c \
+				t_score_tools.c \
+				t_score_tab.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
 INC_NAMES =		draw.h \
 				events.h \
 				game_2048.h \
-				grid.h
+				grid.h \
+				score.h
+
 
 SRCS = $(addprefix $(SRC_PATH)/, $(SRCS_NAMES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAMES))
