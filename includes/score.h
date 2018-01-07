@@ -16,13 +16,20 @@
 # include <stdbool.h>
 # include <stdio.h>
 
+/*
+** string format from score:
+** Name=score
+** Name=score
+** ...
+*/
+
 # define SCORE_FILE "score.txt"
 
 # define SCORE_DISPLAYED_MAX 10
 
 # define NAME_SIZE_MAX 255
 
-# define NAME_SEPARATOR_CHAR		'='
+# define NAME_SEPARATOR_CHAR	'='
 # define SCORE_SEPARATOR_CHAR	'\n'
 
 typedef struct		s_score
@@ -51,7 +58,6 @@ int					t_score_tab_to_file(t_score_tab score_tab,
 						const char *filename);
 int					t_score_tab_from_file(const char *filename,
 						t_score_tab *scores);
-
 
 /*
 ** t_score_from_string.c

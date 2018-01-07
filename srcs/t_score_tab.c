@@ -13,7 +13,6 @@
 #include "libft.h"
 #include "score.h"
 
-#include <stdio.h>
 int			t_score_add_one(t_score_tab *score_tab, const char *name, int score)
 {
 	unsigned int			i;
@@ -30,6 +29,7 @@ int			t_score_add_one(t_score_tab *score_tab, const char *name, int score)
 	return (EXIT_SUCCESS);
 }
 
+#include <stdio.h>
 void		t_score_tab_display(t_score_tab scores)
 {
 	unsigned int		i;

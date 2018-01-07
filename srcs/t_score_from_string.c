@@ -55,10 +55,6 @@ static int		internal_set_score_from_string(const char *ptr,
 	return (EXIT_SUCCESS);
 }
 
-/*
-** string format from score:
-** Name=score;Name=score;
-*/
 int				t_score_from_file_string(const char *s, t_score *new_score,
 					char **s_next)
 {
@@ -72,9 +68,6 @@ int				t_score_from_file_string(const char *s, t_score *new_score,
 	return (EXIT_SUCCESS);
 }
 
-/*
-** should be use for register a score
-*/
 int				t_score_set_name_from_string(const char *name, t_score *score)
 {
 	char		*next;

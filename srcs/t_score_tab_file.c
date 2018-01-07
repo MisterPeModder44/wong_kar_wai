@@ -58,7 +58,7 @@ static int		internal_set_score_tab_from_string(const char *file_ptr,
 	return (EXIT_SUCCESS);
 }
 
-int				t_score_tab_to_file(t_score_tab scores, 
+int				t_score_tab_to_file(t_score_tab scores,
 					const char *filename)
 {
 	int					fd;
@@ -96,5 +96,4 @@ int				t_score_tab_from_file(const char *filename,
 		return (EXIT_SUCCESS);
 	}
 	return (internal_set_score_tab_from_string(ptr_file, scores));
-	
 }
