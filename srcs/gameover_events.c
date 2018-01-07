@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 09:42:28 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 12:12:29 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,20 @@ int				gameover_key(t_gamestate *state, int key)
 	return (0);
 }
 
-void			gameover_redraw(void)
+void			gameover_redraw(t_gamestate *state)
 {
 	void		*hints;
+	char		*score;
+	char		*str;
+	int			win;
 
-	init_pair(COLOR_TITLE, COLOR_RED, COLOR_BLACK);
+	win = t_grid_win(state->grid);
+	init_pair(COLOR_TITLE, win ? COLOR_GREEN : COLOR_RED,
+			COLOR_BLACK);
 	attron(COLOR_PAIR(COLOR_TITLE));
 	print_middle(stdscr, LINES / 2, "GAME OVER");
+	if (win)
+		print_middle(stdscr, LINES / 2 + 1, "- you won -");
 	attroff(COLOR_PAIR(COLOR_TITLE));
 	hints = subwin(stdscr, 5, 32, LINES - 7, COLS / 2 - 16);
 	attron(COLOR_PAIR(0));
@@ -44,4 +51,7 @@ void			gameover_redraw(void)
 	attroff(COLOR_PAIR(0));
 	box(hints, ACS_VLINE, ACS_HLINE);
 	delwin(hints);
+	score = ft_itoa(state->grid->score);
+	print_middle(stdscr, LINES / 2 + 2, str = ft_strjoinf2("score: ", &score));
+	ft_strdel(&str);
 }

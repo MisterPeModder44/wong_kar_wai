@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:15:47 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:30:06 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 10:41:27 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int				game_key(t_gamestate *state, int key);
 void			game_redraw(t_gamestate *state);
 
 int				gameover_key(t_gamestate *state, int key);
-void			gameover_redraw(void);
+void			gameover_redraw(t_gamestate *state);
 
 #endif

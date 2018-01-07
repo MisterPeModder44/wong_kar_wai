@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/07 10:00:09 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 11:57:13 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum	e_color_set
 	COLOR_SELECT,
 	COLOR_PLAIN,
 	COLOR_LOGO,
+	COLOR_GREENTEXT,
 	COLOR_SQUARE,
 };
 
