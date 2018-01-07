@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:17:13 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:56:48 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 10:01:22 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ void			on_redraw(t_gamestate *state)
 {
 	fill_window(stdscr, COLOR_BLACK);
 	box(stdscr, ACS_VLINE, ACS_HLINE);
-	init_pair(COLOR_PLAIN, COLOR_WHITE, COLOR_BLACK);
-	attron(COLOR_PAIR(COLOR_PLAIN));
-	print_middle(stdscr, 0, "2048");
-	attroff(COLOR_PAIR(COLOR_PLAIN));
+	init_pair(COLOR_LOGO, COLOR_MAGENTA, COLOR_BLACK);
+	attron(COLOR_PAIR(COLOR_LOGO));
+	print_middle(stdscr, 1, "   ___   ____  __ __  ____ ");
+	print_middle(stdscr, 2, "  |__ \\ / __ \\/ // / ( __ )");
+	print_middle(stdscr, 3, "  __/ // / / / // /_/ __  |");
+	print_middle(stdscr, 4, " / __// /_/ /__  __/ /_/ / ");
+	print_middle(stdscr, 5, "/____/\\____/  /_/  \\____/  ");
+	attroff(COLOR_PAIR(COLOR_LOGO));
 	refresh();
 	if (state->state == STATE_MENU)
 		menu_redraw(state);

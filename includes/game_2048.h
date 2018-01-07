@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/06 19:01:04 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 10:00:09 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ enum	e_color_set
 	COLOR_TITLE = 1,
 	COLOR_BG,
 	COLOR_SELECT,
+	COLOR_PLAIN,
+	COLOR_LOGO,
 	COLOR_SQUARE,
-	COLOR_PLAIN
 };
 
 typedef struct		s_gamestate

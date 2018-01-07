@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:53:50 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 09:42:28 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				gameover_key(t_gamestate *state, int key)
 
 void			gameover_redraw(void)
 {
-	WINDOW		*hints;
+	void		*hints;
 
 	init_pair(COLOR_TITLE, COLOR_RED, COLOR_BLACK);
 	attron(COLOR_PAIR(COLOR_TITLE));

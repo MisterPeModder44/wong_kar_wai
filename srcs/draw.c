@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 10:28:48 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:26:51 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 10:06:21 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static short	internal_get_color(int number)
 		return (COLOR_CYAN);
 	else if (number == 64 || number == 128)
 		return (COLOR_BLUE);
-	else if (number == 254 || number == 512)
-		return (COLOR_BLUE);
+	else if (number == 256 || number == 512)
+		return (COLOR_MAGENTA);
 	return (COLOR_RED);
 }
 
