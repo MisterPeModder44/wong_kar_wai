@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 18:50:58 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:43:59 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void		add_signals(void)
 	signal(SIGTSTP, sig_handler);
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
+	signal(SIGQUIT, sig_handler);
 }
 
 static void		loop(void)
@@ -54,14 +55,14 @@ static void		loop(void)
 	start_color();
 	while (1)
 	{
+		on_redraw(&state);
+		key = getch();
 		while (LINES < 36 || COLS < 70)
 		{
 			erase();
 			mvprintw(0, 0, "Too small screen");
 			key = getch();
 		}
-		on_redraw(&state);
-		key = getch();
 		if (on_key_pressed(&state, key))
 			break ;
 	}
