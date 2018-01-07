@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 14:32:30 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 15:15:20 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 15:52:02 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void			quit_dialog_redraw(t_gamestate *state)
 {
 	void		*dialog;
 
-	dialog = subwin(stdscr, 5, 22, LINES / 2 - 2, COLS / 2 - 11);
-	mvwprintw((WINDOW *)dialog, 1, 1, "Do you want to quit?");
+	dialog = subwin(stdscr, 5, 24, LINES / 2 - 3, COLS / 2 - 11);
+	mvwprintw((WINDOW *)dialog, 1, 2, "Do you want to quit?");
 	mvwprintw((WINDOW *)dialog, 3, 4, "YES");
-	mvwprintw((WINDOW *)dialog, 3, 16, "NO");
-	mvwaddch((WINDOW *)dialog, 3, state->menu_item ? 15 : 3, '[');
-	mvwaddch((WINDOW *)dialog, 3, state->menu_item ? 19 : 7, ']');
+	mvwprintw((WINDOW *)dialog, 3, 17, "NO");
+	mvwaddch((WINDOW *)dialog, 3, state->menu_item ? 16 : 3, '[');
+	mvwaddch((WINDOW *)dialog, 3, state->menu_item ? 20 : 7, ']');
 	box(dialog, ACS_VLINE, ACS_HLINE);
 	delwin(dialog);
-	++state;
+	mvprintw(LINES - 2, 2,
+			"Use arrows to move around, press 'ESC' or 'Q' to close.");
 }

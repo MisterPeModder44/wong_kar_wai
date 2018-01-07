@@ -8,3 +8,4 @@ norm.log
 CMakeLists.txt
 .idea
 cmake*
+scores.txt

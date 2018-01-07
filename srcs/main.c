@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 11:33:29 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 17:33:42 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static void		sig_handler(int signo)
 	}
 }
 
+static void		add_signals(void)
+{
+	signal(SIGINT, sig_handler);
+	signal(SIGTSTP, sig_handler);
+	signal(SIGUSR1, sig_handler);
+	signal(SIGUSR2, sig_handler);
+}
+
 static void		loop(void)
 {
 	t_gamestate	state;
@@ -36,7 +44,8 @@ static void		loop(void)
 	t_score_tab	scores;
 	int			key;
 
-	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid, .scores = &scores};
+	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid,
+		.scores = &scores};
 	t_score_tab_from_file(SCORE_FILE, &scores);
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
@@ -74,10 +83,7 @@ int				main(void)
 	noecho();
 	curs_set(0);
 	keypad(stdscr, TRUE);
-	signal(SIGINT, sig_handler);
-	signal(SIGTSTP, sig_handler);
-	signal(SIGUSR1, sig_handler);
-	signal(SIGUSR2, sig_handler);
+	add_signals();
 	if (win_value_is_valid())
 	{
 		if (has_colors())
@@ -95,7 +101,6 @@ int				main(void)
 		refresh();
 		getch();
 	}
-	
 	endwin();
 	return (0);
 }

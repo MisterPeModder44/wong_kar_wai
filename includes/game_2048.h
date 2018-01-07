@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/07 14:28:56 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 15:38:59 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ enum	e_const
 	STATE_QUIT_DIALOG,
 	STATE_GAME,
 	STATE_LOST,
+	STATE_SCORE_MENU,
 	WIN_VALUE = 2048,
 };
 
@@ -50,14 +51,11 @@ typedef struct		s_gamestate
 	t_score_tab		*scores;
 }					t_gamestate;
 
-/*
-** Tools
-*/
 int					ft_read_file(int fd, char **out_content);
 int					ft_read_file_with_filename(const char *filename,
-						char **out_content);
+		char **out_content);
 void				*ft_memjoin(const void *p1, size_t s1, const void *p2,
-						size_t s2);
+		size_t s2);
 int					ft_count_char(const char *str, int c);
 
 #endif
