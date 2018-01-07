@@ -33,14 +33,11 @@ void			loop(void)
 {
 	t_gamestate	state;
 	t_grid		grid;
+	t_score_tab	scores;
 	int			key;
 
-	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid};
-	// if (t_score_tab_from_file(SCORE_FILE, &scores) == EXIT_FAILURE)
-	// {
-	// 	// add error message
-	// 	return (EXIT_FAILURE);
-	// }
+	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid, .scores = &scores};
+	t_score_tab_from_file(SCORE_FILE, &scores);
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
 	start_color();
@@ -51,7 +48,7 @@ void			loop(void)
 		if (on_key_pressed(&state, key))
 			break ;
 	}
-	// t_score_tab_to_file(scores, SCORE_FILE);
+	t_score_tab_to_file(scores, SCORE_FILE);
 }
 
 int				main(void)

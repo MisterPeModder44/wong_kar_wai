@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include "grid.h"
+# include "score.h"
 
 # define ESC_KEY	27
 # define Q_KEY		113
@@ -45,6 +46,7 @@ typedef struct		s_gamestate
 	int				state;
 	int				menu_item;
 	t_grid			*grid;
+	t_score_tab		*scores;
 }					t_gamestate;
 
 /*
