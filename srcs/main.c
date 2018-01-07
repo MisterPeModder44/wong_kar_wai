@@ -36,6 +36,11 @@ void			loop(void)
 	int			key;
 
 	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid};
+	// if (t_score_tab_from_file(SCORE_FILE, &scores) == EXIT_FAILURE)
+	// {
+	// 	// add error message
+	// 	return (EXIT_FAILURE);
+	// }
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
 	start_color();
@@ -46,25 +51,11 @@ void			loop(void)
 		if (on_key_pressed(&state, key))
 			break ;
 	}
+	// t_score_tab_to_file(scores, SCORE_FILE);
 }
 
 int				main(void)
 {
-	t_score_tab	scores;
-
-	if (t_score_tab_from_file(SCORE_FILE, &scores) == EXIT_FAILURE)
-	{
-		fprintf(stderr, "ERROR with file %s\n", SCORE_FILE);
-		return (EXIT_FAILURE);
-	}
-	for (int i = SCORE_DISPLAYED_MAX; i >= 0; i--)
-	{
-		t_score_add_one(&scores, "toto", i + 20);
-	}
-	t_score_tab_display(scores);
-	t_score_tab_to_file(scores, SCORE_FILE);
-	return (0);
-	// end
 	srand(time(NULL));
 	initscr();
 	noecho();
