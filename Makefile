@@ -35,14 +35,17 @@ SRCS_NAMES =	main.c \
 				ft_count_char.c \
 				t_score_tab_file.c \
 				t_score_from_string.c \
-				t_score_tools.c
+				t_score_tools.c \
+				t_score_tab.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 
 INC_NAMES =		draw.h \
 				events.h \
 				game_2048.h \
-				grid.h
+				grid.h \
+				score.h
+
 
 SRCS = $(addprefix $(SRC_PATH)/, $(SRCS_NAMES))
 OBJS = $(addprefix $(OBJ_PATH)/, $(OBJS_NAMES))

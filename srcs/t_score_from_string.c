@@ -25,7 +25,10 @@ static int		internal_set_name_from_string(const char *ptr,
 		new_score->name[i] = ptr[i];
 		i++;
 	}
+	if (i == 0)
+		return (EXIT_FAILURE);
 	new_score->name[i] = '\0';
+	*s_next = (char *)&(ptr[i]);
 	if (ptr[i] != NAME_SEPARATOR_CHAR)
 		return (EXIT_FAILURE);
 	*s_next = (char *)&(ptr[i + 1]);
@@ -76,7 +79,7 @@ int				t_score_set_name_from_string(const char *name, t_score *score)
 {
 	char		*next;
 
-	if (internal_set_name_from_string(s, score, &next) == EXIT_FAILURE
+	if (internal_set_name_from_string(name, score, &next) == EXIT_FAILURE
 			|| *next != '\0')
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

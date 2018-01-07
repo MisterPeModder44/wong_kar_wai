@@ -14,13 +14,16 @@
 # define SCORE_H
 
 # include <stdbool.h>
+# include <stdio.h>
+
+# define SCORE_FILE "score.txt"
 
 # define SCORE_DISPLAYED_MAX 10
 
 # define NAME_SIZE_MAX 255
 
 # define NAME_SEPARATOR_CHAR		'='
-# define SCORE_SEPARATOR_CHAR	';'
+# define SCORE_SEPARATOR_CHAR	'\n'
 
 typedef struct		s_score
 {
@@ -35,11 +38,19 @@ typedef struct		s_score_tab
 }					t_score_tab;
 
 /*
+** t_score_tab.c
+*/
+int					t_score_add_one(t_score_tab *score_tab,
+						const char *name, int score);
+void				t_score_tab_display(t_score_tab score_tab);
+
+/*
 ** t_score_tab_file.c
 */
-
-int					t_score_tab_to_file(t_score_tab score_tab, int fd);
-t_score_tab			*t_score_tab_from_file(const char *filename);
+int					t_score_tab_to_file(t_score_tab score_tab,
+						const char *filename);
+int					t_score_tab_from_file(const char *filename,
+						t_score_tab *scores);
 
 
 /*

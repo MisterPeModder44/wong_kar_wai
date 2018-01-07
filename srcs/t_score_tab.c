@@ -13,9 +13,10 @@
 #include "libft.h"
 #include "score.h"
 
+#include <stdio.h>
 int			t_score_add_one(t_score_tab *score_tab, const char *name, int score)
 {
-	int			i;
+	unsigned int			i;
 
 	i = 0;
 	if (!t_score_is_valid_name(name) || score < 0)
@@ -27,4 +28,18 @@ int			t_score_add_one(t_score_tab *score_tab, const char *name, int score)
 	t_score_set_name_from_string(name, &(score_tab->score_tab[i]));
 	score_tab->score_tab[i].score = score;
 	return (EXIT_SUCCESS);
+}
+
+void		t_score_tab_display(t_score_tab scores)
+{
+	unsigned int		i;
+
+	i = 0;
+	fprintf(stderr, "%s\n", "SCORES:");
+	while (i < scores.nb_score)
+	{
+		fprintf(stderr, "[%d] : {%s} - %d pts\n", i,
+			scores.score_tab[i].name, scores.score_tab[i].score);
+		i++;
+	}
 }

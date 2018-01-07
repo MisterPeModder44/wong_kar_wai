@@ -17,6 +17,7 @@
 #include "draw.h"
 #include "events.h"
 #include "game_2048.h"
+#include "score.h"
 
 void			sig_handler(int signo)
 {
@@ -49,6 +50,15 @@ void			loop(void)
 
 int				main(void)
 {
+	t_score_tab	scores;
+
+	if (t_score_tab_from_file(SCORE_FILE, &scores) == EXIT_FAILURE)
+	{
+		fprintf(stderr, "ERROR with file %s\n", SCORE_FILE);
+		return (EXIT_FAILURE);
+	}
+	t_score_tab_display(scores);
+
 	srand(time(NULL));
 	initscr();
 	noecho();
