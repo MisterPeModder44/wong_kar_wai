@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:43:01 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:54:17 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 static void		sig_handler(int signo)
 {
 	if (signo == SIGINT || signo == SIGTSTP || signo == SIGUSR1 ||
-			signo == SIGUSR2)
+			signo == SIGUSR2 || signo == SIGQUIT)
 	{
 		endwin();
 		exit(EXIT_FAILURE);
@@ -36,6 +36,7 @@ static void		add_signals(void)
 	signal(SIGTSTP, sig_handler);
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
+	signal(SIGQUIT, sig_handler);
 }
 
 static void		loop(void)
@@ -58,6 +59,12 @@ static void		loop(void)
 			state.state = STATE_LOST2;
 		on_redraw(&state);
 		key = getch();
+		while (LINES < 36 || COLS < 70)
+		{
+			erase();
+			mvprintw(0, 0, "Too small screen");
+			key = getch();
+		}
 		if (on_key_pressed(&state, key))
 			break ;
 	}

@@ -78,11 +78,10 @@ void			game_redraw(t_gamestate *state)
 		internal_centered_coords(state, &sx, NULL);
 		while (++x < state->grid->grid_size)
 		{
-			if (t)
-				ft_strdel(&t);
 			t = state->grid->grid[x][y] ? ft_itoa(state->grid->grid[x][y]) :
 				ft_strdup(" ");
 			put_square(stdscr, (int[]){sx, sy, 12}, state->grid->grid[x][y], t);
+			ft_strdel(&t);
 			sx += 13;
 		}
 		sy += 6;
