@@ -57,8 +57,14 @@ int				main(void)
 		fprintf(stderr, "ERROR with file %s\n", SCORE_FILE);
 		return (EXIT_FAILURE);
 	}
+	for (int i = SCORE_DISPLAYED_MAX; i >= 0; i--)
+	{
+		t_score_add_one(&scores, "toto", i + 20);
+	}
 	t_score_tab_display(scores);
-
+	t_score_tab_to_file(scores, SCORE_FILE);
+	return (0);
+	// end
 	srand(time(NULL));
 	initscr();
 	noecho();

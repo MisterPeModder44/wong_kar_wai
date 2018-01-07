@@ -66,7 +66,7 @@ int				t_score_tab_to_file(t_score_tab scores,
 	t_score				score;
 
 	i = 0;
-	fd = open(filename, O_RDWR | O_CREAT | O_TRUNC);
+	fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		return (EXIT_FAILURE);
 	while (i < scores.nb_score)
