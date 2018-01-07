@@ -19,7 +19,7 @@
 #include "game_2048.h"
 #include "score.h"
 
-void			sig_handler(int signo)
+static void		sig_handler(int signo)
 {
 	if (signo == SIGINT || signo == SIGTSTP || signo == SIGUSR1 ||
 			signo == SIGUSR2)
@@ -29,7 +29,7 @@ void			sig_handler(int signo)
 	}
 }
 
-void			loop(void)
+static void		loop(void)
 {
 	t_gamestate	state;
 	t_grid		grid;
@@ -51,6 +51,22 @@ void			loop(void)
 	t_score_tab_to_file(scores, SCORE_FILE);
 }
 
+static bool		win_value_is_valid(void)
+{
+	int		i;
+
+	i = 2;
+	if (WIN_VALUE < 2)
+		return (false);
+	while (i < WIN_VALUE)
+	{
+		i *= 2;
+	}
+	if (i == WIN_VALUE)
+		return (true);
+	return (false);
+}
+
 int				main(void)
 {
 	srand(time(NULL));
@@ -62,14 +78,24 @@ int				main(void)
 	signal(SIGTSTP, sig_handler);
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
-	if (has_colors())
-		loop();
+	if (win_value_is_valid())
+	{
+		if (has_colors())
+			loop();
+		else
+		{
+			printw("Your terminal does not support color.");
+			refresh();
+			getch();
+		}
+	}
 	else
 	{
-		printw("Your terminal does not support color.");
+		printw("The win value (%d) is not valid.", WIN_VALUE);
 		refresh();
 		getch();
 	}
+	
 	endwin();
 	return (0);
 }
