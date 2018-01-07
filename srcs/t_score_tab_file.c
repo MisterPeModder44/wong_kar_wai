@@ -86,6 +86,7 @@ int				t_score_tab_from_file(const char *filename,
 					t_score_tab *scores)
 {
 	char			*ptr_file;
+	int				ret;
 
 	ptr_file = NULL;
 	ft_bzero(scores, sizeof(t_score_tab));
@@ -95,5 +96,7 @@ int				t_score_tab_from_file(const char *filename,
 		scores->nb_score = 0;
 		return (EXIT_SUCCESS);
 	}
-	return (internal_set_score_tab_from_string(ptr_file, scores));
+	ret = internal_set_score_tab_from_string(ptr_file, scores);
+	ft_strdel(&ptr_file);
+	return (ret);
 }
