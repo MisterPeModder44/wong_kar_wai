@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:17:13 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 18:17:43 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 20:13:35 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,23 @@ int				on_key_pressed(t_gamestate *state, int key)
 	return (0);
 }
 
+static void		check_screen_size(void)
+{
+	while (LINES < 36 || COLS < 70)
+	{
+		erase();
+		init_pair(COLOR_TITLE, COLOR_RED, COLOR_BLACK);
+		attron(COLOR_PAIR(COLOR_TITLE));
+		print_middle(stdscr, LINES / 2, "Screen is too small!");
+		attroff(COLOR_PAIR(COLOR_TITLE));
+		getch();
+	}
+}
+
 void			on_redraw(t_gamestate *state)
 {
 	fill_window(stdscr, COLOR_BLACK);
+	check_screen_size();
 	box(stdscr, ACS_VLINE, ACS_HLINE);
 	init_pair(COLOR_LOGO, COLOR_MAGENTA, COLOR_BLACK);
 	attron(COLOR_PAIR(COLOR_LOGO));

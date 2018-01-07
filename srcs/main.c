@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:54:17 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 20:01:31 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ static void		loop(void)
 			state.state = STATE_LOST2;
 		on_redraw(&state);
 		key = getch();
-		while (LINES < 36 || COLS < 70)
-		{
-			erase();
-			mvprintw(0, 0, "Too small screen");
-			key = getch();
-		}
 		if (on_key_pressed(&state, key))
 			break ;
 	}

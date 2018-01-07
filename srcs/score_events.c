@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:34:04 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:29:22 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 20:08:11 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void		internal_draw_empty_box(t_gamestate *state, void **win)
 			state->scores->nb_score / 2, COLS / 2 - 14);
 	print_middle(*win, 1, "(no scores to display)");
 	print_middle(stdscr, LINES / 2 + 3, "[ BACK ]");
-
 }
 
 void			score_redraw(t_gamestate *state)

@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:41:42 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:59:27 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static void		gameover_redraw2(t_gamestate *state)
 
 	str = "Enter a name: ";
 	size = ft_strlen(str);
-	mvprintw(LINES / 2 + 2, COLS / 2 - (size + NAME_SIZE_MAX) / 2, "Enter a name: ");
+	mvprintw(LINES / 2 + 2, COLS / 2 - (size + NAME_SIZE_MAX) / 2,
+			"Enter a name: ");
 	init_pair(COLOR_TEXTFIELD, COLOR_BLACK, COLOR_WHITE);
 	init_pair(COLOR_TEXTFIELD_INSIDE, COLOR_BLACK, COLOR_WHITE);
 	i = -1;
