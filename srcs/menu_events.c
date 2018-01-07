@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 18:55:28 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 10:29:00 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,44 @@ int				menu_key(t_gamestate *state, int key)
 		--state->menu_item;
 	else if (key == KEY_DOWN)
 		++state->menu_item;
-	else if (key == ENTER_KEY && state->menu_item == 0)
+	else if (key == ENTER_KEY)
 	{
-		state->state = STATE_GAME;
+		if (state->menu_item == 0)
+			state->state = STATE_GAME;
+		else if (state->menu_item == 3)
+			return (1);
 	}
 	state->menu_item = state->menu_item < 0 ? 2 : state->menu_item;
-	state->menu_item = state->menu_item > 2 ? 0 : state->menu_item;
+	state->menu_item = state->menu_item > 3 ? 0 : state->menu_item;
 	return (0);
 }
 
-static void		printh_middle(WINDOW *win, int *i, char *str, t_gamestate *st)
+static void		printh_middle(int *i, char *str, t_gamestate *st)
 {
 	if (st->menu_item == i[1])
 	{
-		init_pair(COLOR_SELECT, COLOR_WHITE, COLOR_RED);
+		mvprintw(i[0], COLS / 2 - 5, "[");
+		init_pair(COLOR_SELECT, COLOR_WHITE, COLOR_BLUE);
 		attron(COLOR_PAIR(COLOR_SELECT));
 	}
-	print_middle(win, i[0], str);
+	else
+		mvprintw(i[0], COLS / 2 - 5, "-");
+	print_middle(stdscr, i[0], str);
 	if (st->menu_item == i[1])
+	{
 		attroff(COLOR_PAIR(COLOR_SELECT));
+		mvprintw(i[0], COLS / 2 + 5, "]");
+	}
+	else
+		mvprintw(i[0], COLS / 2 + 5, "-");
 }
 
 void			menu_redraw(t_gamestate *state)
 {
-	printh_middle(stdscr, (int[]){LINES / 2 - 1, 0}, "PLAY", state);
-	printh_middle(stdscr, (int[]){LINES / 2 + 1, 2}, "OPTIONS", state);
-	printh_middle(stdscr, (int[]){LINES / 2, 1}, "SCORES", state);
+	printh_middle((int[]){LINES / 2 - 1, 0}, "PLAY", state);
+	printh_middle((int[]){LINES / 2, 1}, "SCORES", state);
+	printh_middle((int[]){LINES / 2 + 1, 2}, "OPTIONS", state);
+	printh_middle((int[]){LINES / 2 + 3, 3}, "QUIT", state);
+	mvprintw(LINES - 2, 2,
+			"Use arrows to move around, press 'ESC' or 'Q' to quit.");
 }
