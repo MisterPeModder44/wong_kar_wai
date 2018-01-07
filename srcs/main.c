@@ -23,7 +23,7 @@
 static void		sig_handler(int signo)
 {
 	if (signo == SIGINT || signo == SIGTSTP || signo == SIGUSR1 ||
-			signo == SIGUSR2)
+			signo == SIGUSR2 || signo == SIGQUIT)
 	{
 		endwin();
 		exit(EXIT_FAILURE);
@@ -54,6 +54,12 @@ static void		loop(void)
 	start_color();
 	while (1)
 	{
+		while (LINES < 36 || COLS < 70)
+		{
+			erase();
+			mvprintw(0, 0, "Too small screen");
+			key = getch();
+		}
 		on_redraw(&state);
 		key = getch();
 		if (on_key_pressed(&state, key))
