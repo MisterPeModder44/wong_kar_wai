@@ -49,7 +49,6 @@ typedef struct		s_score_tab
 */
 int					t_score_add_one(t_score_tab *score_tab,
 						const char *name, int score);
-void				t_score_tab_display(t_score_tab score_tab);
 
 /*
 ** t_score_tab_file.c

@@ -52,18 +52,3 @@ int			t_score_add_one(t_score_tab *scores, const char *name,
 		internal_push_down_scores(scores, name, score, i);
 	return (EXIT_SUCCESS);
 }
-
-#include <stdio.h>
-void		t_score_tab_display(t_score_tab scores)
-{
-	unsigned int		i;
-
-	i = 0;
-	fprintf(stderr, "%s\n", "SCORES:");
-	while (i < scores.nb_score)
-	{
-		fprintf(stderr, "[%d] : {%s} - %d pts\n", i,
-			scores.score_tab[i].name, scores.score_tab[i].score);
-		i++;
-	}
-}
