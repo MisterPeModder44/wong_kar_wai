@@ -29,7 +29,13 @@ SRCS_NAMES =	main.c \
 				t_grid_win_or_loose.c \
 				t_grid_spread_random_number.c \
 				t_grid_calcul_column.c \
-				t_grid_calcul_line.c
+				t_grid_calcul_line.c \
+				ft_read_file.c \
+				ft_memjoin.c \
+				ft_count_char.c \
+				t_score_tab_file.c \
+				t_score_from_string.c \
+				t_score_tools.c
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o)
 

@@ -46,4 +46,14 @@ typedef struct		s_gamestate
 	t_grid			*grid;
 }					t_gamestate;
 
+/*
+** Tools
+*/
+int					ft_read_file(int fd, char **out_content);
+int					ft_read_file_with_filename(const char *filename,
+						char **out_content);
+void				*ft_memjoin(const void *p1, size_t s1, const void *p2,
+						size_t s2);
+int					ft_count_char(const char *str, int c);
+
 #endif
