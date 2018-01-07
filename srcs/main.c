@@ -68,6 +68,7 @@ int				main(void)
 	{
 		printw("Your terminal does not support color.");
 		refresh();
+		getch();
 	}
 	endwin();
 	return (0);

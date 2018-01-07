@@ -100,6 +100,6 @@ void			put_square(WINDOW *win, int *square, int number, char *text)
 		++y;
 	}
 	mvwprintw(win, square[1] + square[2] / 4 - 1, square[0] + square[2] / 2 -
-			ft_strlen(text) / 2, text);
+			ft_strlen(text) / 2, "%s", text);
 	attroff(COLOR_PAIR(group));
 }
