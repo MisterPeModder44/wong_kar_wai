@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/06 19:04:32 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 12:14:21 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,24 @@ static void		internal_centered_coords(t_gamestate *st, int *sx, int *sy)
 				st->grid->grid_size - 1) / 2;
 }
 
+static void		game_redraw2(t_gamestate *state)
+{
+	char		*goal;
+
+	mvprintw(LINES - 2, 2, "score: %d", state->grid->score);
+	goal = ft_itoa(WIN_VALUE);
+	goal = ft_strjoinf2("goal: ", &goal);
+	mvprintw(LINES - 2, COLS - ft_strlen(goal) - 1, goal);
+	ft_strdel(&goal);
+	init_pair(COLOR_GREENTEXT, COLOR_GREEN, COLOR_BLACK);
+	if (t_grid_win(state->grid))
+	{
+		attron(COLOR_PAIR(COLOR_GREENTEXT));
+		print_middle(stdscr, LINES - 2, "YOU WIN");
+		attroff(COLOR_PAIR(COLOR_GREENTEXT));
+	}
+}
+
 void			game_redraw(t_gamestate *state)
 {
 	int				sx;
@@ -69,4 +87,5 @@ void			game_redraw(t_gamestate *state)
 		}
 		sy += 6;
 	}
+	game_redraw2(state);
 }

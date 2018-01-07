@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:17:13 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 10:01:22 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 11:17:38 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void			on_redraw(t_gamestate *state)
 	else if (state->state == STATE_GAME)
 		game_redraw(state);
 	else if (state->state == STATE_LOST)
-		gameover_redraw();
+		gameover_redraw(state);
 	refresh();
 }
