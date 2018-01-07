@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:44:11 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:08:16 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:41:42 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int				gameover_key(t_gamestate *state, int key)
 	len = ft_strlen(state->player_name);
 	if (key == DEL_KEY && len > 0)
 		state->player_name[len - 1] = 0;
-	else if (ft_isalnum(key) && len < NAME_SIZE_MAX)
+	else if ((ft_isalnum(key) || key == '_' || key == '-')
+			&& len < NAME_SIZE_MAX)
 		state->player_name[len] = (char)key;
 	else if (key == ENTER_KEY && len > 0)
 	{
@@ -61,26 +62,36 @@ static void		gameover_redraw2(t_gamestate *state)
 	init_pair(COLOR_TEXTFIELD_INSIDE, COLOR_BLACK, COLOR_WHITE);
 	i = -1;
 	pn_len = ft_strlen(state->player_name);
+	attron(COLOR_PAIR(COLOR_TEXTFIELD_INSIDE));
 	while (++i < NAME_SIZE_MAX)
 	{
-		if (i < pn_len)
-		{
-			attron(COLOR_PAIR(COLOR_TEXTFIELD_INSIDE));
-			mvaddch(LINES / 2 + 2, i + COLS / 2 + 2, state->player_name[i]);
-		}
-		else
+		if (i >= pn_len)
 		{
 			attroff(COLOR_PAIR(COLOR_TEXTFIELD_INSIDE));
 			attron(COLOR_PAIR(COLOR_TEXTFIELD));
-			mvaddch(LINES / 2 + 2, i + COLS / 2 + 2, ' ');
 		}
+		mvaddch(LINES / 2 + 2, i + COLS / 2 + 2, i < pn_len ?
+				state->player_name[i] : ' ');
 	}
 	attroff(COLOR_PAIR(COLOR_TEXTFIELD));
 }
 
-void			gameover_redraw(t_gamestate *state)
+static void		gameover_print_hint(void)
 {
 	void		*hints;
+
+	hints = subwin(stdscr, 5, 32, LINES - 7, COLS / 2 - 16);
+	attron(COLOR_PAIR(0));
+	print_middle(hints, 1, "press 'ENTER' to retry");
+	print_middle(hints, 2, "press 'Q' to go to main menu");
+	print_middle(hints, 3, "press 'ESC' to quit");
+	attroff(COLOR_PAIR(0));
+	box(hints, ACS_VLINE, ACS_HLINE);
+	delwin(hints);
+}
+
+void			gameover_redraw(t_gamestate *state)
+{
 	char		*score;
 	char		*str;
 	int			win;
@@ -93,14 +104,8 @@ void			gameover_redraw(t_gamestate *state)
 	if (win)
 		print_middle(stdscr, LINES / 2 - 1, "- you won -");
 	attroff(COLOR_PAIR(COLOR_TITLE));
-	hints = subwin(stdscr, 5, 32, LINES - 7, COLS / 2 - 16);
-	attron(COLOR_PAIR(0));
-	print_middle(hints, 1, "press 'ENTER' to retry");
-	print_middle(hints, 2, "press 'Q' to go to main menu");
-	print_middle(hints, 3, "press 'ESC' to quit");
-	attroff(COLOR_PAIR(0));
-	box(hints, ACS_VLINE, ACS_HLINE);
-	delwin(hints);
+	if (state->state == STATE_LOST2)
+		gameover_print_hint();
 	score = ft_itoa(state->grid->score);
 	print_middle(stdscr, LINES / 2, str = ft_strjoinf2("score: ", &score));
 	ft_strdel(&str);

@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 15:34:04 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 19:13:24 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:29:22 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ int				score_key(t_gamestate *state, int key)
 	if (key == ESC_KEY || key == Q_KEY || key == ENTER_KEY)
 		state->state = STATE_MENU;
 	return (0);
+}
+
+static void		internal_draw_empty_box(t_gamestate *state, void **win)
+{
+	*win = subwin(stdscr, 3, 29, LINES / 2 -
+			state->scores->nb_score / 2, COLS / 2 - 14);
+	print_middle(*win, 1, "(no scores to display)");
+	print_middle(stdscr, LINES / 2 + 3, "[ BACK ]");
+
 }
 
 void			score_redraw(t_gamestate *state)
@@ -40,12 +49,7 @@ void			score_redraw(t_gamestate *state)
 				"[ BACK ]");
 	}
 	else
-	{
-		win = subwin(stdscr, 3, 29, LINES / 2 -
-				state->scores->nb_score / 2, COLS / 2 - 14);
-		print_middle(win, 1, "(no scores to display)");
-		print_middle(stdscr, LINES / 2 + 3, "[ BACK ]");
-	}
+		internal_draw_empty_box(state, &win);
 	box(win, ACS_VLINE, ACS_HLINE);
 	delwin(win);
 	print_middle(stdscr, LINES / 2 - state->scores->nb_score / 2 - 1, "SCORES");

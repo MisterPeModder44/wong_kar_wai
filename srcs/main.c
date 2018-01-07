@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 18:50:58 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 19:43:01 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void		loop(void)
 	start_color();
 	while (1)
 	{
+		if (state.state == STATE_LOST && state.grid->score == 0)
+			state.state = STATE_LOST2;
 		on_redraw(&state);
 		key = getch();
 		if (on_key_pressed(&state, key))
