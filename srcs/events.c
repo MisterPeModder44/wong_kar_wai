@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:17:13 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 15:36:17 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 18:17:43 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int				on_key_pressed(t_gamestate *state, int key)
 		return (game_key(state, key));
 	else if (state->state == STATE_LOST)
 		return (gameover_key(state, key));
+	else if (state->state == STATE_LOST2)
+		return (gameover_key2(state, key));
 	else if (state->state == STATE_SCORE_MENU)
 		return (score_key(state, key));
 	return (0);
@@ -48,7 +50,7 @@ void			on_redraw(t_gamestate *state)
 		quit_dialog_redraw(state);
 	else if (state->state == STATE_GAME)
 		game_redraw(state);
-	else if (state->state == STATE_LOST)
+	else if (state->state == STATE_LOST || state->state == STATE_LOST2)
 		gameover_redraw(state);
 	else if (state->state == STATE_SCORE_MENU)
 		score_redraw(state);

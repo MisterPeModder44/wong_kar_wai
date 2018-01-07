@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:15:47 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 15:35:20 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 18:16:36 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				game_key(t_gamestate *state, int key);
 void			game_redraw(t_gamestate *state);
 
 int				gameover_key(t_gamestate *state, int key);
+int				gameover_key2(t_gamestate *state, int key);
 void			gameover_redraw(t_gamestate *state);
 
 int				score_key(t_gamestate *state, int key);

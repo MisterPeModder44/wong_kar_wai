@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 08:59:49 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 17:33:42 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 18:50:58 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <time.h>
+#include <libft_base/memory.h>
 #include "draw.h"
 #include "events.h"
 #include "game_2048.h"
@@ -46,6 +47,7 @@ static void		loop(void)
 
 	state = (t_gamestate){.state = STATE_MENU, .menu_item = 0, .grid = &grid,
 		.scores = &scores};
+	ft_bzero(state.player_name, NAME_SIZE_MAX + 1);
 	t_score_tab_from_file(SCORE_FILE, &scores);
 	t_grid_init(state.grid, GRID_SIZE_MAX);
 	t_grid_spread_random_number(state.grid, GRID_SIZE_MAX / 2);
