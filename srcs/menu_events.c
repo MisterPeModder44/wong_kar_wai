@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 13:10:02 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 10:29:00 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 15:13:37 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 int				menu_key(t_gamestate *state, int key)
 {
 	if (key == ESC_KEY || key == Q_KEY)
-		return (1);
+	{
+		state->menu_item = 0;
+		state->state = STATE_QUIT_DIALOG;
+	}
 	else if (key == KEY_UP)
 		--state->menu_item;
 	else if (key == KEY_DOWN)
@@ -27,7 +30,10 @@ int				menu_key(t_gamestate *state, int key)
 		if (state->menu_item == 0)
 			state->state = STATE_GAME;
 		else if (state->menu_item == 3)
-			return (1);
+		{
+			state->menu_item = 0;
+			state->state = STATE_QUIT_DIALOG;
+		}
 	}
 	state->menu_item = state->menu_item < 0 ? 2 : state->menu_item;
 	state->menu_item = state->menu_item > 3 ? 0 : state->menu_item;

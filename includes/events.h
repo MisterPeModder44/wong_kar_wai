@@ -6,7 +6,7 @@
 /*   By: yguaye <yguaye@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 11:15:47 by yguaye            #+#    #+#             */
-/*   Updated: 2018/01/07 10:41:27 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 14:38:19 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int				on_key_pressed(t_gamestate *state, int key);
 
 void			menu_redraw(t_gamestate *state);
 int				menu_key(t_gamestate *state, int key);
+
+void			quit_dialog_redraw(t_gamestate *state);
+int				quit_dialog_key(t_gamestate *state, int key);
 
 int				game_key(t_gamestate *state, int key);
 void			game_redraw(t_gamestate *state);

@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 09:52:38 by mressier          #+#    #+#             */
-/*   Updated: 2018/01/07 11:57:13 by yguaye           ###   ########.fr       */
+/*   Updated: 2018/01/07 14:28:56 by yguaye           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ enum	e_const
 {
 	EMPTY_VALUE = 0,
 	STATE_MENU,
+	STATE_QUIT_DIALOG,
 	STATE_GAME,
 	STATE_LOST,
 	WIN_VALUE = 2048,
