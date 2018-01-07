@@ -23,11 +23,11 @@
 ** ...
 */
 
-# define SCORE_FILE "score.txt"
+# define SCORE_FILE "scores.txt"
 
 # define SCORE_DISPLAYED_MAX 10
 
-# define NAME_SIZE_MAX 255
+# define NAME_SIZE_MAX 10
 
 # define NAME_SEPARATOR_CHAR	'='
 # define SCORE_SEPARATOR_CHAR	'\n'
